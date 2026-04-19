@@ -38,3 +38,39 @@ To clean and preprocess the dataset so it can be used for analysis and modeling.
 ### Output
 
 A cleaned dataset with no missing values, ready for further analysis and modeling.
+
+---
+
+## Task 2: Exploratory Data Analysis (EDA)
+
+### Objective
+
+To analyze the Titanic dataset using visualizations and identify patterns affecting survival.
+
+### Steps Performed
+
+* Plotted survival count
+* Analyzed survival based on gender
+* Visualized age distribution
+* Analyzed fare distribution
+* Created correlation heatmap
+
+### Key Insights
+
+* Most passengers did not survive
+* Females had higher survival rate than males
+* Most passengers were aged between 20–30
+* Fare distribution is right-skewed
+* Higher class passengers had better survival chances
+
+### Tools Used
+
+* Python
+* Pandas
+* Matplotlib
+* Seaborn
+
+### Output
+
+Visual insights and patterns from the dataset using graphs and analysis
+
