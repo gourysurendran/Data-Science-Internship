@@ -59,3 +59,116 @@ The MNIST dataset contains 28x28 grayscale images of handwritten digits (0–9).
 
 ## Conclusion
 The deep learning model successfully performs handwritten digit classification with high accuracy. Visualization confirms correct predictions.
+
+
+
+Task 3: End-to-End Data Science Project - Health Risk Prediction
+
+Objective
+
+To develop a complete data science project, starting from data preprocessing and model building to deploying a machine learning model as a web application using Flask.
+
+
+
+Dataset
+
+The dataset contains health-related attributes used to predict risk levels, including:
+
+Age
+
+Body Mass Index (BMI)
+
+Blood Pressure (BP)
+
+
+
+---
+
+Steps Performed
+
+1. Loaded and explored the dataset
+
+
+2. Cleaned data and handled missing values
+
+
+3. Selected relevant features (Age, BMI, BP)
+
+
+4. Trained a machine learning model (e.g., Random Forest / Logistic Regression — update if needed)
+
+
+5. Evaluated model performance
+
+
+6. Saved the trained model using pickle (model.pkl)
+
+
+7. Developed a Flask web application
+
+
+8. Created a user interface using HTML
+
+
+9. Integrated the model with the backend
+
+
+10. Deployed the application using Render
+
+
+
+
+---
+
+Tools Used
+
+Python
+
+Pandas
+
+Scikit-learn
+
+Flask
+
+HTML
+
+Gunicorn
+
+Render
+
+
+
+---
+
+Output
+
+Live Web Application
+👉 https://riskwiseai.onrender.com
+
+Model File
+👉 model.pkl
+
+Web Interface
+👉 templates/index.html
+
+
+
+---
+
+Model Details
+
+Input Features: Age, BMI, BP
+
+Output: Health Risk Level (Low / Medium / High)
+
+Model Type: Machine Learning Classifier
+
+
+
+---
+
+Conclusion
+
+The project successfully demonstrates an end-to-end data science workflow by integrating data preprocessing, model development, and deployment into a functional web application. It highlights the ability to convert a machine learning model into a real-world usable system, making predictions accessible through a user-friendly interface.
+
+
