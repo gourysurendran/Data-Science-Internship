@@ -1,221 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Risk AI Prediction</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Health AI Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient-start: #0f172a;
-            --bg-gradient-end: #1e1b4b;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #6366f1;
-            --accent-hover: #4f46e5;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --primary: #4ADE80;
+            --primary-dark: #22c55e;
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-            color: var(--text-primary);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(74, 222, 128, 0.1) 0px, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
-            margin: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            box-sizing: border-box;
+            position: relative;
+            overflow-x: hidden;
         }
 
         .container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
             width: 100%;
-            max-width: 480px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.6s ease-out;
+            max-width: 500px;
+            z-index: 10;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
+        @keyframes slideUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        header {
+        .header {
             text-align: center;
             margin-bottom: 2.5rem;
         }
 
-        h1 {
-            font-size: 2rem;
+        .header h1 {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin: 0 0 0.5rem 0;
-            background: linear-gradient(to right, #818cf8, #c084fc);
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
-        p.subtitle {
-            color: var(--text-secondary);
-            margin: 0;
-            font-size: 0.95rem;
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
             position: relative;
+            display: flex;
+            flex-direction: column-reverse;
         }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        input {
+        .form-control {
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 1rem;
-            color: white;
+            padding: 1rem 1.2rem;
+            color: var(--text-main);
             font-size: 1rem;
-            font-family: inherit;
-            box-sizing: border-box;
             transition: all 0.3s ease;
-        }
-
-        input:focus {
             outline: none;
-            border-color: var(--accent);
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
 
-        button {
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.1);
+        }
+
+        .form-control:focus + label {
+            color: var(--primary);
+        }
+
+        .btn-submit {
             width: 100%;
-            background: var(--accent);
-            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #000;
             border: none;
             border-radius: 12px;
-            padding: 1rem;
-            font-size: 1rem;
-            font-weight: 600;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        button:hover {
-            background: var(--accent-hover);
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px var(--accent);
+            box-shadow: 0 10px 20px -10px var(--primary);
         }
 
-        .result {
+        .btn-submit:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .result-container {
             margin-top: 2rem;
             padding: 1.5rem;
             border-radius: 16px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            animation: slideUp 0.4s ease-out;
+            animation: fadeIn 0.5s ease forwards;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .result h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .result-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
 
         .result-value {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
         }
 
-        .risk-low {
-            color: var(--success);
+        .result-value.low { color: #4ADE80; }
+        .result-value.medium { color: #FBBF24; }
+        .result-value.high { color: #EF4444; }
+        .result-value.error { color: #EF4444; font-size: 1.2rem;}
+
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            z-index: 10;
         }
 
-        .risk-medium {
-            color: var(--warning);
+        .footer span {
+            color: #ef4444;
+            display: inline-block;
+            animation: pulse 2s infinite;
         }
 
-        .risk-high {
-            color: var(--danger);
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .blob-1 {
+            top: 10%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(56, 189, 248, 0.3);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: 10%;
+            right: 20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(74, 222, 128, 0.2);
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
         }
     </style>
 </head>
-
 <body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
     <div class="container">
-        <header>
-            <h1>Health AI Agent</h1>
-            <p class="subtitle">Predict your health risk profile instantly.</p>
-        </header>
-
-        <form action="/predict" method="POST">
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" placeholder="e.g. 30" required>
+        <div class="card">
+            <div class="header">
+                <h1>Health AI</h1>
+                <p>Predictive Health Analytics</p>
             </div>
 
-            <div class="form-group">
-                <label for="bmi">BMI</label>
-                <input type="number" step="0.1" id="bmi" name="bmi" placeholder="e.g. 24.5" required>
-            </div>
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <input type="number" id="age" name="age" class="form-control" placeholder="e.g. 45" value="{{ age if age else '' }}" required>
+                    <label for="age">Age</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="number" step="0.1" id="bmi" name="bmi" class="form-control" placeholder="e.g. 24.5" value="{{ bmi if bmi else '' }}" required>
+                    <label for="bmi">BMI</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="number" id="bp" name="bp" class="form-control" placeholder="e.g. 120" value="{{ bp if bp else '' }}" required>
+                    <label for="bp">Blood Pressure</label>
+                </div>
 
-            <div class="form-group">
-                <label for="bp">Blood Pressure (Systolic)</label>
-                <input type="number" id="bp" name="bp" placeholder="e.g. 120" required>
-            </div>
+                <button type="submit" class="btn-submit">Analyze Health Risk</button>
+            </form>
 
-            <button type="submit">Analyze Risk Profile</button>
-        </form>
-
-        {% if prediction_text %}
-        <div class="result">
-            <h3>Prediction Result</h3>
-            <div
-                class="result-value {% if 'Low' in prediction_text %}risk-low{% elif 'Medium' in prediction_text %}risk-medium{% else %}risk-high{% endif %}">
-                {{ prediction_text }}
+            {% if prediction_text %}
+            <div class="result-container">
+                <div class="result-title">Analysis Result</div>
+                {% if 'Error' in prediction_text %}
+                    <div class="result-value error">{{ prediction_text }}</div>
+                {% else %}
+                    <div class="result-value {% if 'Low' in prediction_text %}low{% elif 'Medium' in prediction_text %}medium{% elif 'High' in prediction_text %}high{% endif %}">
+                        {{ prediction_text }}
+                    </div>
+                {% endif %}
             </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-</body>
 
+        <div class="footer">
+            Developed with <span>❤️</span> by Goury Surendran
+        </div>
+    </div>
+
+</body>
 </html>

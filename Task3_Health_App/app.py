@@ -29,9 +29,9 @@ def predict():
         prediction = model.predict(features)
 
         result = ["Low Risk", "Medium Risk", "High Risk"][prediction[0]]
-        return render_template("index.html", prediction_text=result)
+        return render_template("index.html", prediction_text=result, age=age_val, bmi=bmi_val, bp=bp_val)
     except Exception as e:
-        return render_template("index.html", prediction_text=f"Error: {str(e)}")
+        return render_template("index.html", prediction_text=f"Error: {str(e)}", age=request.form.get("age", ""), bmi=request.form.get("bmi", ""), bp=request.form.get("bp", ""))
 
 if __name__ == "__main__":
     app.run(debug=True)
