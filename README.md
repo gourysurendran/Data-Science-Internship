@@ -4,30 +4,27 @@ CODTECH Data Science Internship Tasks
 
 ---
 
-Task 1: Data Pipeline
+# Task 1: Data Pipeline
 
-Objective
+## Objective
 To build a data pipeline for preprocessing, transformation, and loading using Pandas and Scikit-learn.
 
-Steps Performed
+## Steps Performed
+1. Loaded dataset using Pandas  
+2. Handled missing values (Age, Embarked)  
+3. Dropped unnecessary column (Cabin)  
+4. Applied Label Encoding using Scikit-learn  
+5. Saved processed dataset  
 
-* Loaded dataset using Pandas
-* Handled missing values (Age, Embarked)
-* Dropped unnecessary column (Cabin)
-* Applied Label Encoding using Scikit-learn
-* Saved processed dataset
+## Tools Used
+- Python  
+- Pandas  
+- Scikit-learn  
 
-Tools Used
+## Output
+- `processed_data.csv` (cleaned dataset)
 
-* Python
-* Pandas
-* Scikit-learn
-
-Output
-
-* processed_data.csv (cleaned dataset)
-
-
+---
 
 # Task 2: Deep Learning - MNIST Digit Classification
 
@@ -38,137 +35,87 @@ To build a deep learning model to classify handwritten digits using the MNIST da
 The MNIST dataset contains 28x28 grayscale images of handwritten digits (0–9).
 
 ## Steps Performed
-1. Imported required libraries (TensorFlow, Keras, Matplotlib)
-2. Loaded the MNIST dataset
-3. Visualized sample images
-4. Normalized pixel values (0–255 → 0–1)
-5. Built a neural network model
-6. Compiled the model
-7. Trained the model
-8. Evaluated model performance
-9. Visualized predictions
+1. Imported required libraries (TensorFlow, Keras, Matplotlib)  
+2. Loaded the MNIST dataset  
+3. Visualized sample images  
+4. Normalized pixel values (0–255 → 0–1)  
+5. Built a neural network model  
+6. Compiled the model  
+7. Trained the model  
+8. Evaluated model performance  
+9. Visualized predictions  
 
 ## Model Details
-- Input Layer: Flatten (28x28)
-- Hidden Layer: Dense (128, ReLU)
-- Output Layer: Dense (10, Softmax)
+- Input Layer: Flatten (28x28)  
+- Hidden Layer: Dense (128, ReLU)  
+- Output Layer: Dense (10, Softmax)  
 
 ## Results
-- Accuracy: ~97%
-- The model correctly classifies most digits
+- Accuracy: ~97%  
+- The model correctly classifies most digits  
 
 ## Conclusion
 The deep learning model successfully performs handwritten digit classification with high accuracy. Visualization confirms correct predictions.
 
-
-
-Task 3: End-to-End Data Science Project - Health Risk Prediction
-
-Objective
-
-To develop a complete data science project, starting from data preprocessing and model building to deploying a machine learning model as a web application using Flask.
-
-
-
-Dataset
-
-The dataset contains health-related attributes used to predict risk levels, including:
-
-Age
-
-Body Mass Index (BMI)
-
-Blood Pressure (BP)
-
-
-
 ---
 
-Steps Performed
+# Task 3: End-to-End Data Science Project - Health Risk Prediction Web Application
 
-1. Loaded and explored the dataset
+## Objective
+To develop a complete end-to-end data science solution that integrates data preprocessing, machine learning model development, and deployment using Flask.
 
+## Project Overview
+This project predicts a user’s health risk level (Low, Medium, High) based on:
+- Age  
+- Body Mass Index (BMI)  
+- Blood Pressure (BP)  
 
-2. Cleaned data and handled missing values
+The application demonstrates how a machine learning model can be transformed into a real-world usable web application.
 
+## Steps Performed
+1. Loaded and explored the dataset  
+2. Cleaned and preprocessed data  
+3. Selected relevant features (Age, BMI, BP)  
+4. Trained a machine learning classification model  
+5. Evaluated model performance  
+6. Saved trained model using `pickle` (`model.pkl`)  
+7. Developed Flask backend application  
+8. Created frontend interface using HTML  
+9. Integrated model with Flask  
+10. Deployed the application using Render  
 
-3. Selected relevant features (Age, BMI, BP)
+## Tools Used
+- Python  
+- Pandas  
+- Scikit-learn  
+- Flask  
+- HTML/CSS  
+- Gunicorn  
+- Render  
 
+## Project Structure
+```text
+Task3_Health_App/
+│── app.py
+│── model.pkl
+│── requirements.txt
+│── Procfile
+│── health_model.ipynb
+│── templates/
+│   └── index.html
 
-4. Trained a machine learning model (e.g., Random Forest / Logistic Regression — update if needed)
+Live Application
 
-
-5. Evaluated model performance
-
-
-6. Saved the trained model using pickle (model.pkl)
-
-
-7. Developed a Flask web application
-
-
-8. Created a user interface using HTML
-
-
-9. Integrated the model with the backend
-
-
-10. Deployed the application using Render
-
-
-
-
----
-
-Tools Used
-
-Python
-
-Pandas
-
-Scikit-learn
-
-Flask
-
-HTML
-
-Gunicorn
-
-Render
-
-
-
----
+👉 https://riskwiseai.onrender.com
 
 Output
 
-Live Web Application
-👉 https://riskwiseai.onrender.com
+Health Risk Prediction Web Application
 
-Model File
-👉 model.pkl
+Real-time prediction system using Machine Learning
 
-Web Interface
-👉 templates/index.html
-
-
-
----
-
-Model Details
-
-Input Features: Age, BMI, BP
-
-Output: Health Risk Level (Low / Medium / High)
-
-Model Type: Machine Learning Classifier
-
-
-
----
 
 Conclusion
 
-The project successfully demonstrates an end-to-end data science workflow by integrating data preprocessing, model development, and deployment into a functional web application. It highlights the ability to convert a machine learning model into a real-world usable system, making predictions accessible through a user-friendly interface.
-
+This project demonstrates the complete lifecycle of a data science application, including preprocessing, model training, backend integration, deployment, and user interaction. It highlights practical implementation skills in machine learning, Flask development, and cloud deployment.
 
