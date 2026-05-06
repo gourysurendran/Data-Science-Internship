@@ -295,6 +295,11 @@
                         {{ prediction_text }}
                     </div>
                 {% endif %}
+                {% if explanation_text %}
+                <div class="result-explanation" style="margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                    {{ explanation_text }}
+                </div>
+                {% endif %}
             </div>
             {% endif %}
         </div>
