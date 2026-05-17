@@ -91,8 +91,6 @@ The application integrates machine learning, Flask backend development, and depl
 ## Live Demo
 🔗 https://riskwiseai.onrender.com
 
-## GitHub Repository
-🔗 https://github.com/gourysurendran/Task3_Health_App
 
 ---
 
